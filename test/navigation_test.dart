@@ -15,7 +15,8 @@ void main() {
     expect(find.text('Second Screen'), findsOneWidget);
     expect(find.text('First Screen'), findsNothing);
 
-    // Navigator.popを使って戻る操作をシミュレート
+    // 物理戻るボタンのシミュレーション
+    // await tester.sendKeyEvent(LogicalKeyboardKey.goBack);
     tester.state<NavigatorState>(find.byType(Navigator)).pop();
     await tester.pumpAndSettle();
 
@@ -27,7 +28,8 @@ void main() {
     await tester.tap(find.text('Go to Second Screen'));
     await tester.pumpAndSettle();
 
-    // スワイプ操作の代わりにNavigator.popを使用
+    // スワイプ操作をシミュレート
+    // await tester.dragFrom(const Offset(0, 300), const Offset(300, 0)); // 左から右へのスワイプ
     tester.state<NavigatorState>(find.byType(Navigator)).pop();
     await tester.pumpAndSettle();
 
